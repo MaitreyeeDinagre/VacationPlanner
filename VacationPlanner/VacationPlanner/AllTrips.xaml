@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="VacationPlanner.AllTrips"
+             NavigationPage.HasBackButton="False"
+             Title="All Trips"
+             BackgroundImageSource="background.jpg">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="Globe" 
+                     Text="Globe" 
+                     IconImageSource="globe.jpg" 
+                     Clicked="GlobeImageButton_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Padding="5" >
+                <StackLayout Orientation="Horizontal">
+                    <Entry x:Name="Filter" 
+                           Placeholder="Enter text to filter" 
+                           TextChanged="Filter_TextChanged" 
+                           Style="{StaticResource filterStyle}"/>
+                    <Picker x:Name="choosePicker" 
+                            Title="  My Trips  "
+                            SelectedIndexChanged="OnPickerSelectedIndexChanged"
+                            Style="{StaticResource pickerStyle}">
+                        <Picker.Items>
+                            <x:String>Upcoming</x:String>
+                            <x:String>Completed</x:String>
+                            <x:String>Cancelled</x:String>
+                            <x:String>All Trips</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </StackLayout>
+                <ListView x:Name="ListView_Trips" 
+                          ItemTapped="ListView_Trips_ItemTapped"
+                          VerticalOptions="FillAndExpand"
+                          RowHeight="70">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                            <StackLayout Style="{StaticResource listViewStyle}">
+                                    <Label Text="{Binding TripName}"
+                                           x:Name="tripName"
+                                           VerticalOptions="Center"/>
+                                    <Label Text="{Binding DatePicker, StringFormat='{}{0:MMM d, yyyy}'}"
+                                           x:Name="tripFrom"
+                                           HorizontalOptions="EndAndExpand"
+                                           VerticalOptions="Center"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ImageButton Source="AddTrip.png"
+                         Clicked="AddTripImageButton_Clicked"
+                         Style="{StaticResource addimagebuttonStyle}"/>
+            </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

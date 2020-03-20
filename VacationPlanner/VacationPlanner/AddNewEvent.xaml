@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="VacationPlanner.AddNewEvent"
+            BackgroundColor="FloralWhite"
+            x:Name="NewEvent"
+            NavigationPage.HasBackButton="False"
+            Title="Add Details">
+    <ContentPage Title="Travel"
+            BackgroundImageSource="background.jpg">
+        <ScrollView>
+            <StackLayout Orientation="Vertical" Margin="10, 0, 0, 5">
+                <Entry Text="{Binding EventName}" 
+                       Placeholder="Name your Day" 
+                       Style="{StaticResource entryStyle}"/>
+                <Label Text="Event Name" Margin="5,-10,0,0"/>
+                <DatePicker Date="{Binding DepartureDate}" MinimumDate="3/1/2020"/>
+                <Label Text="Start Date" Margin="5,-10,0,0"/>
+                <TimePicker Time="{Binding DepartureTime, StringFormat='{}{0:t}'}"/>
+                <Label Text="Departure Time" Margin="5,-10,0,0"/>
+                <Entry Text="{Binding DepFrom}"  
+                       Placeholder="Departure From" 
+                       Style="{StaticResource entryStyle}" />
+                <Label Text="Departure From" Margin="5,-10,0,0"/>
+                <TimePicker Time="{Binding ArrivalTime, StringFormat='{}{0:t}'}"/>
+                <Label Text="Arrival Time" Margin="5,-10,0,0"/>
+                <Entry Text="{Binding ArrTo}"    
+                       Placeholder="Arrival At" 
+                       Style="{StaticResource entryStyle}"/>
+                <Label Text="Arrival At" Margin="5,-10,0,0"/>
+                <Picker Title="Travel By?" 
+                SelectedIndexChanged="OnPickerSelectedIndexChanged">
+                    <Picker.Items>
+                        <x:String>Bike</x:String>
+                        <x:String>Car</x:String>
+                        <x:String>Bus</x:String>
+                        <x:String>Train</x:String>
+                        <x:String>S Bahn</x:String>
+                        <x:String>Tram</x:String>
+                        <x:String>Flight</x:String>
+                        <x:String>Other</x:String>
+                    </Picker.Items>
+                </Picker>
+                <Label Text="Travel Mode:" Margin="5,-10,0,0"/>
+                <Entry Text="{Binding TravelPrice}"
+                       Placeholder="Ticket Price" 
+                       Style="{StaticResource entryStyle}" 
+                       Keyboard="Numeric" />
+                <Label Text="Travel Price (In EUR)" Margin="5,-10,0,0"/>
+                <Label FontAttributes="Bold"
+                       VerticalOptions="EndAndExpand"
+                       HorizontalOptions="CenterAndExpand">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Omio"
+                                  TextColor="Blue"
+                                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding TapCommand}"
+                                                          CommandParameter="https://www.omio.com/"/>
+                                </Span.GestureRecognizers>
+                            </Span>
+                            <Span Text="     Other"
+                                  TextColor="Blue"
+                                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding TapCommand}"
+                                                          CommandParameter="https://www.google.com/" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <Button Text="Add Stay" Clicked="AddStayButton_Clicked"/>
+                    <Button Text="Just Save" Clicked="AddButton_Clicked"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage>
+    <ContentPage Title="Stay"
+            BackgroundImageSource="background.jpg">
+        <ScrollView>
+            <StackLayout Orientation="Vertical" Margin="10, 0, 0, 5" >
+                <Entry Text="{Binding HotelName}"
+                           Placeholder="Stay At" 
+                           Style="{StaticResource entryStyle}"/>
+                <Label Text="Stay At" Margin="5,-10,0,0"/>
+                <DatePicker Date="{Binding CheckIn}" MinimumDate="3/1/2020"/>
+                <Label Text="Check In Date" Margin="5,-10,0,0"/>
+                <DatePicker Date="{Binding CheckOut}" MinimumDate="3/1/2020"/>
+                <Label Text="Check Out Date" Margin="5,-10,0,0"/>
+                <Entry Text="{Binding StayPrice}"
+                           Placeholder="Total Price" 
+                           Style="{StaticResource entryStyle}"
+                           Keyboard="Numeric" />
+                <Label Text="Total Price (In EUR)" Margin="5,-10,0,0"/>
+                <Label FontAttributes="Bold"
+                       VerticalOptions="EndAndExpand"
+                       HorizontalOptions="CenterAndExpand">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="     Airbnb"
+                                  TextColor="Blue"
+                                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding TapCommand}"
+                                                          CommandParameter="https://www.airbnb.com/"/>
+                                </Span.GestureRecognizers>
+                            </Span>
+                            <Span Text="     Expedia"
+                                  TextColor="Blue"
+                                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding TapCommand}"
+                                                          CommandParameter="https://www.expedia.com/" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                            <Span Text="     Other"
+                                  TextColor="Blue"
+                                  TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding TapCommand}"
+                                                          CommandParameter="https://www.google.com/" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Button Text="Save Details" Clicked="AddButton_Clicked"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage>
+</TabbedPage>

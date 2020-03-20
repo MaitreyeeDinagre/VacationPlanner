@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             NavigationPage.HasBackButton="False"
+             BackgroundColor="FloralWhite"
+             mc:Ignorable="d"
+             x:Class="VacationPlanner.AddNewTrip"
+             x:Name="New Trip"
+             BackgroundImageSource="background.jpg">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="Globe" 
+                     Text="Globe" 
+                     IconImageSource="globe.jpg" 
+                     Clicked="GlobeImageButton_Clicked"/>
+        <ToolbarItem x:Name="SlideMenu" 
+                     Text="Slide Menu" 
+                     IconImageSource="SlideMenu.png" 
+                     Clicked="SlideMenuImageButton_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="10, 0, 0, 5" >
+                <Label Text="Where should we take you?"
+                       FontAttributes="Bold"
+                       VerticalOptions="Fill" 
+                       HorizontalOptions="CenterAndExpand" />
+                <StackLayout Orientation="Vertical" Margin="10, 0, 0, 5" >
+                    <Entry Text="{Binding TripName}"   
+                           Placeholder="Name your Trip!" 
+                           Style="{StaticResource entryStyle}"/>
+                    <Label Text="Trip Name" Margin="5,-10,0,0"/>
+                    <Entry Text="{Binding TripFrom}"
+                           Placeholder="Your departure city?" 
+                           Style="{StaticResource entryStyle}"/>
+                    <Label Text="Start Location" Margin="5,-10,0,0"/>
+                    <Entry Text="{Binding TripTo}" 
+                           Placeholder="Which places are you travelling to?"  
+                           Style="{StaticResource entryStyle}"/>
+                    <Label Text="Places" Margin="5,-10,0,0"/>
+                    <DatePicker Date="{Binding DatePicker}" MinimumDate="1/3/2020"/>
+                    <Label Text="Start Date" Margin="5,-10,0,0"/>
+                    <Entry Text="{Binding Days}" 
+                           Placeholder="How many days?" 
+                           Style="{StaticResource entryStyle}"
+                           Keyboard="Numeric"/>
+                    <Label Text="Days" Margin="5,-10,0,0"/>
+                    <Entry Text="{Binding Details}"
+                           Placeholder="Any important details?"   
+                           Style="{StaticResource entryStyle}"/>
+                    <Label Text="Details" Margin="5,-10,0,0"/>
+                    <Entry Text="{Binding Budget}"
+                           Placeholder="Maximum expence should be?"   
+                           Style="{StaticResource entryStyle}" 
+                           Keyboard="Numeric"/>
+                    <Label Text="Budget (In EUR)" Margin="5,-10,0,0"/>
+                </StackLayout>
+                <Button Text="Save Trip" Clicked="AddButton_Clicked"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

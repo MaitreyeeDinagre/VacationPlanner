@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="VacationPlanner.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Style x:Key="filterStyle" TargetType="Entry">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            </Style>
+            <Style x:Key="pickerStyle" TargetType="Picker">
+                <Setter Property="HorizontalOptions" Value="EndAndExpand" />
+            </Style>
+            <Style x:Key="listViewStyle" TargetType="StackLayout">
+                <Setter Property="Orientation" Value="Horizontal" />
+                <Setter Property="Margin" Value="5,5,5,5" />
+            </Style>
+            <Style x:Key="imagebuttonStyle" TargetType="ImageButton">
+                <Setter Property="HeightRequest" Value="30" />
+                <Setter Property="WidthRequest" Value="30" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
+            <Style x:Key="entryStyle" TargetType="Entry">
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="Keyboard" Value="Text" />
+                <Setter Property="ReturnType" Value="Next" />
+            </Style>
+            <Style x:Key="addimagebuttonStyle" TargetType="ImageButton">
+                <Setter Property="CornerRadius" Value="30" />
+                <Setter Property="HeightRequest" Value="60" />
+                <Setter Property="WidthRequest" Value="60" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="Margin" Value="0,0,10,10" />
+                <Setter Property="HorizontalOptions" Value="EndAndExpand" />
+                <Setter Property="VerticalOptions" Value="End" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

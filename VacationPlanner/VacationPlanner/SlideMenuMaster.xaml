@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="VacationPlanner.SlideMenuMaster"
+             FlowDirection="LeftToRight"
+             Title="">
+  <StackLayout>
+    <ListView x:Name="MenuItemsListView"
+              SeparatorVisibility="None"
+              HasUnevenRows="true"
+              ItemsSource="{Binding MenuItems}">
+      <d:ListView.ItemsSource>
+                <x:Array Type="{x:Type x:MasterPageItem}">
+                    <x:MasterPageItem Title="Vacation Days Till Now" TargetType="{x:Type x:EditProfilePage}" />
+                    <x:MasterPageItem Title="Explored World" IconSource="globe.png" TargetType="{x:Type x:EditProfilePage}" />
+                    <x:MasterPageItem Title="Total Expense on Travel" TargetType="{x:Type x:EditProfilePage}" />
+                    <x:MasterPageItem Title="Settings" IconSource="settings.png" TargetType="{x:Type x:EditProfilePage}" />
+                    <x:MasterPageItem Title="Logout" TargetType="{x:Type x:EditProfilePage}" />
+                </x:Array>
+      </d:ListView.ItemsSource>
+            <ListView.Header>
+                <Grid BackgroundColor="Gray">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="10"/>
+                    </Grid.RowDefinitions>
+                    <Label
+              Grid.Column="1"
+              Grid.Row="1"
+              Text="My Vacation Planner"
+              FontSize="24"
+              Style="{DynamicResource SubtitleStyle}"/>
+                </Grid>
+            </ListView.Header>
+
+            <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand">
+              <Label VerticalOptions="FillAndExpand" 
+                    VerticalTextAlignment="Center" 
+                    Text="{Binding Title}" 
+                    d:Text="{Binding .}"
+                    FontSize="18"/>
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </StackLayout>
+</ContentPage>

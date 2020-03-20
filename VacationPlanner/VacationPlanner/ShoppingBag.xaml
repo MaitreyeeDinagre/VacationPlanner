@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             BackgroundColor="FloralWhite"
+             x:Class="VacationPlanner.ShoppingBag"
+             Title="Packing Items"
+             x:Name="BagItem"
+             BackgroundImageSource="background.jpg">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="Globe" 
+                     Text="Globe" 
+                     IconImageSource="globe.jpg" 
+                     Clicked="GlobeImageButton_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Entry x:Name="Filter" 
+                       Placeholder="Enter text to filter" 
+                       TextChanged="Filter_TextChanged" 
+                       Style="{StaticResource filterStyle}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Entry x:Name="itemName"
+                       Placeholder="Enter Item Name" 
+                       Style="{StaticResource entryStyle}"/>
+                <Entry x:Name="quantity"
+                       Placeholder="Quantity?" 
+                       Style="{StaticResource entryStyle}"/>
+                <Button Text="Add" Clicked="AddButton_Clicked"/>
+            </StackLayout>
+            <StackLayout>
+                <ListView x:Name="ListView_ShoppingBag"                        
+                          IsPullToRefreshEnabled="true"
+                          VerticalOptions="FillAndExpand"
+                          RowHeight="70">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <CheckBox x:Name="checkBox" HorizontalOptions="Start"/>
+                                    <Label Text="{Binding ItemName}"
+                                       x:Name="itemName" 
+                                       Margin="0,20,5,0"
+                                       HorizontalOptions="StartAndExpand"/>
+                                    <Label Text="{Binding Quantity}"
+                                       x:Name="quantity" 
+                                       Margin="0,20,5,0"
+                                       HorizontalOptions="End"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

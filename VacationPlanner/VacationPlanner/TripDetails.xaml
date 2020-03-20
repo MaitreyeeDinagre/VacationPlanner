@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+            BackgroundColor="FloralWhite"
+             x:Class="VacationPlanner.TripDetails"
+            x:Name="TripDetail"
+            Title="All Details">
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem x:Name="Globe" 
+                     Text="Globe" 
+                     IconImageSource="globe.jpg" 
+                     Clicked="GlobeImageButton_Clicked"/>
+        <ToolbarItem x:Name="ShoppingBag" 
+                     Text="Shopping Bag" 
+                     IconImageSource="bag.png" 
+                     Clicked="BagImageButton_Clicked"/>
+    </TabbedPage.ToolbarItems>
+    <ContentPage Title="My Plan"
+                 BackgroundImageSource="background.jpg">
+        <StackLayout>
+        <Entry x:Name="Filter" 
+               Placeholder="Enter text to filter" 
+               TextChanged="Filter_TextChanged"
+               Style="{StaticResource filterStyle}"/>
+            <ListView x:Name="ListView_Details"
+                      ItemSelected="ListView_Details_ItemSelected"
+                      RowHeight="70">
+                <!--ItemTapped="ListView_Details_ItemTapped"-->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Style="{StaticResource listViewStyle}">
+                                <Label x:Name="eventName"
+                                       Text="{Binding EventName}"
+                                       VerticalOptions="Center"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ImageButton Source="AddTrip.png"
+                         Clicked="AddTripEventImageButton_Clicked"
+                         Style="{StaticResource addimagebuttonStyle}"/>
+        </StackLayout>
+    </ContentPage>
+    <ContentPage Title="My Event"
+                 BackgroundImageSource="background.jpg">
+        <ScrollView>
+            <StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                <ImageButton Source="edit.png"
+                             Clicked="EditEventButton_Clicked"
+                             Style="{StaticResource imagebuttonStyle}"/>
+                <ImageButton Source="delete.png"
+                             Clicked="DeleteEventButton_Clicked"
+                             Style="{StaticResource imagebuttonStyle}"/>
+                </StackLayout>
+                <StackLayout Orientation="Vertical" >
+                    <Label Text="Travel Details" Margin="0, 0, 0, 25" FontAttributes="Bold"/>
+                    <StackLayout Orientation="Horizontal" Margin="0, 0, 0, 15">
+                        <Label Text="Start Date:"/>
+                        <Label Text="{Binding DepartureDate, StringFormat='{}{0:MMM d, yyyy}'}" x:Name="startDatePicker" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="0, 0, 0, 15">
+                        <Label Text="Departure Time:" HorizontalOptions="Start"/>
+                        <Label Text="{Binding DepartureTime, StringFormat='{}{0:t}'}" x:Name="DepartureTime"/>
+                        <Label Text="Departure From:" HorizontalOptions="EndAndExpand"/>
+                        <Label Text="{Binding DepFrom}" x:Name="DepFrom" Margin="0, 0, 5, 0"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="0, 0, 0, 15">
+                        <Label Text="Arrival Time:" HorizontalOptions="Start"/>
+                        <Label Text="{Binding ArrivalTime, StringFormat='{}{0:t}'}" x:Name="ArrivalTime"/>
+                        <Label Text="Arrival At:" HorizontalOptions="EndAndExpand"/>
+                        <Label Text="{Binding ArrTo}" x:Name="ArrTo" Margin="0, 0, 5, 0"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="0, 0, 0, 15">
+                        <Label Text="Travel By:"/>
+                        <Label Text="{Binding TravelMode}" x:Name="TravelMode"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="0, 0, 0, 25">
+                        <Label Text="Total Price (In EUR):"/>
+                        <Label Text="{Binding TravelPrice}" x:Name="TravelPrice"/>
+                    </StackLayout>
+
+                    <Label Text="Stay Details" Margin="0, 0, 0, 25" FontAttributes="Bold"/>
+                    <StackLayout Orientation="Horizontal"  Margin="0, 0, 0, 15">
+                        <Label Text="Stay At:"/>
+                        <Label Text="{Binding HotelName}" x:Name="HotelName"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"  Margin="0, 0, 0, 15">
+                        <Label Text="Check In Date:" HorizontalOptions="Start"/>
+                        <Label Text="{Binding CheckIn, StringFormat='{}{0:MMM d, yyyy}'}" x:Name="CheckIn"/>
+                        <Label Text="Check Out Date:" HorizontalOptions="EndAndExpand"/>
+                        <Label Text="{Binding CheckOut, StringFormat='{}{0:MMM d, yyyy}'}" x:Name="CheckOut" Margin="0, 0, 5, 0"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="0, 0, 0, 15">
+                        <Label Text="Total Price (In EUR):"/>
+                        <Label Text="{Binding StayPrice}" x:Name="StayPrice"/>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage>
+    <ContentPage Title="Trip Details"
+                 BackgroundImageSource="background.jpg">
+        <ScrollView>
+            <StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                    <ImageButton Source="edit.png"
+                             Clicked="EditTripButton_Clicked"
+                             Style="{StaticResource imagebuttonStyle}"/>
+                    <ImageButton Source="cancel.png"
+                             Clicked="DeleteTripButton_Clicked"
+                             Style="{StaticResource imagebuttonStyle}"/>
+                </StackLayout>
+                <Label Text="Your Trip details are..." Margin="0, 0, 0, 25"
+                           FontAttributes="Bold"
+                           VerticalOptions="Fill" 
+                           HorizontalOptions="CenterAndExpand" />
+                <StackLayout Orientation="Vertical" Margin="0, 0, 0, 25">
+                    <StackLayout Orientation="Horizontal" Margin="0, 0, 0, 25">
+                        <Label Text="Trip Name:"/>
+                        <Label Text="{Binding TripName}" x:Name="tripName"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="0, 0, 0, 25">
+                        <Label Text="Start Date:"/>
+                        <Label Text="{Binding DatePicker, StringFormat='{}{0:MMM d, yyyy}'}" x:Name="DatePicker" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="0, 0, 0, 25">
+                        <Label Text="Start Location:"/>
+                        <Label Text="{Binding TripFrom}" x:Name="tripFrom"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="0, 0, 0, 25">
+                        <Label Text="Places:"/>
+                        <Label Text="{Binding TripTo}" x:Name="tripTo"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="0, 0, 0, 25">
+                        <Label Text="Days:"/>
+                        <Label Text="{Binding Days}" x:Name="Days" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="0, 0, 0, 50">
+                        <Label Text="Details:"/>
+                        <Label Text="{Binding Details}" x:Name="Details" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="0, 0, 0, 25">
+                        <Label Text="Budget (In EUR):"/>
+                        <Label Text="{Binding Budget}" x:Name="Budget" />
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage>
+</TabbedPage>
